@@ -24,6 +24,8 @@ type StdPool struct {
 	p *sync.Pool
 }
 
+var _ Pool = (*StdPool)(nil)
+
 // NewStdPool create a StdPool instance
 func NewStdPool(fac New) *StdPool {
 	return &StdPool{
@@ -50,6 +52,8 @@ type FixedPool struct {
 	objs chan Object
 	fac  New
 }
+
+var _ Pool = (*FixedPool)(nil)
 
 // NewFixedPool create a FixedPool instance with a given capacity
 func NewFixedPool(capacity int, fac New) *FixedPool {
