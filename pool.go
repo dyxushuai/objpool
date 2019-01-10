@@ -12,7 +12,7 @@ type Object interface {
 type Pool interface {
 	// Get a Object from Pool
 	Get() Object
-	// Giveback Object to Poll
+	// Giveback Object to Pool
 	Put(Object)
 }
 
