@@ -60,15 +60,14 @@ func NewFixedPool(capacity int, fac New) *FixedPool {
 }
 
 func (p *FixedPool) Get() Object {
+	var obj Object
 	select {
-	case obj := <-p.objs:
-		obj.Reset()
-		return obj
+	case obj = <-p.objs:
 	default:
-		obj := p.fac()
-		obj.Reset()
-		return obj
+		obj = p.fac()
 	}
+	obj.Reset()
+	return obj
 }
 
 func (p *FixedPool) Put(obj Object) {
